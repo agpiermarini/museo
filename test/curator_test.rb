@@ -36,13 +36,13 @@ class CuratorTest < Minitest::Test
 
   def test_can_add_arist
     curator = Curator.new
-    curator.add_artist({id: 1, name: "Ansel Adams", born: 1902, died: 1984, country: "United States"})
+    curator.add_artist({name: "Ansel Adams", born: 1902, died: 1984, country: "United States"})
     assert_instance_of Artist, curator.artists.first
   end
 
   def test_artist_count_and_id
     curator = Curator.new
-    curator.add_artist({id: 1, name: "Ansel Adams", born: 1902, died: 1984, country: "United States"})
+    curator.add_artist({name: "Ansel Adams", born: 1902, died: 1984, country: "United States"})
     assert_equal 1, curator.artists.count
     assert_equal 1, curator.artists.first.id
   end
@@ -55,30 +55,30 @@ class CuratorTest < Minitest::Test
 
   def test_photograph_count_and_id
     curator = Curator.new
-    curator.add_photograph({id: 1, name: "Moonrise, Hernandez", artist_id: 1, museum_id: 1, year: 1941})
+    curator.add_photograph({name: "Moonrise, Hernandez", artist_id: 1, museum_id: 1, year: 1941})
     assert_equal 1, curator.photographs.count
     assert_equal 1, curator.photographs.first.id
   end
 
   def test_it_can_find_museum_by_id
     curator = Curator.new
-    curator.add_museum({id: 1, name: "Museo de Arte Moderno"})
+    curator.add_museum({name: "Museo de Arte Moderno"})
     assert_equal "Museo de Arte Moderno", curator.find_museum(1).name
     assert_equal 1, curator.find_museum(1).id
   end
 
   def test_it_can_find_artist_by_id
     curator = Curator.new
-    curator.add_artist({id: 1, name: "Ansel Adams", born: 1902, died: 1984, country: "United States"})
+    curator.add_artist({name: "Ansel Adams", born: 1902, died: 1984, country: "United States"})
     assert_equal "Ansel Adams", curator.find_artist(1).name
     assert_equal 1, curator.find_artist(1).id
   end
 
   def test_it_can_find_museum_by_photograph
     curator = Curator.new
-    curator.add_museum({id: 1, name: "Metropolitan Museum of Art"})
-    curator.add_artist({id: 1, name: "Diane Arbus", born: 1923, died: 1971, country: "United States"})
-    curator.add_photograph({id: 1, name: "Identical Twins, Roselle, New Jersey", artist_id: 1, museum_id: 1, year: 1967})
+    curator.add_museum({name: "Metropolitan Museum of Art"})
+    curator.add_artist({name: "Diane Arbus", born: 1923, died: 1971, country: "United States"})
+    curator.add_photograph({name: "Identical Twins, Roselle, New Jersey", artist_id: 1, museum_id: 1, year: 1967})
 
     photograph = curator.photographs.first
     museum = curator.find_museum_by_photograph(photograph)
@@ -90,9 +90,9 @@ class CuratorTest < Minitest::Test
 
   def test_it_can_find_artist_by_photograph
     curator = Curator.new
-    curator.add_museum({id: 1, name: "Metropolitan Museum of Art"})
-    curator.add_artist({id: 1, name: "Diane Arbus", born: 1923, died: 1971, country: "United States"})
-    curator.add_photograph({id: 1, name: "Identical Twins, Roselle, New Jersey", artist_id: 1, museum_id: 1, year: 1967})
+    curator.add_museum({name: "Metropolitan Museum of Art"})
+    curator.add_artist({name: "Diane Arbus", born: 1923, died: 1971, country: "United States"})
+    curator.add_photograph({name: "Identical Twins, Roselle, New Jersey", artist_id: 1, museum_id: 1, year: 1967})
 
     photograph = curator.photographs.first
     artist = curator.find_artist_by_photograph(photograph)
